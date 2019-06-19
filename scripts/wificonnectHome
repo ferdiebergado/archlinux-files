@@ -1,0 +1,124 @@
+#!/bin/bash
+DNSCONF="/etc/unbound/unbound.conf"
+HARDEN=0
+[[ -n $(uname -r | grep harden) ]] && HARDEN=1
+
+# start service when not active
+start() {
+    [[ -z $(systemctl status $1 | grep -ow active) ]] && systemctl start $1.service
+}
+
+# stop service when active
+stop() {
+    [[ -n $(systemctl status $1 | grep -ow active) ]] && systemctl stop $1.service
+}
+
+# kill_all() {
+#     [[ -n $(pgrep $1) ]] && killall -q $1 &
+# }
+
+# stop network services
+echo -e "\nStopping network services...\n"
+killall -q wpa_supplicant
+dhcpcd -x "$IFACE"
+#stop systemd-timesyncd
+stop openvpn-client@vpngate
+stop unbound
+stop dnscrypt-proxy
+stop iptables
+stop ipset
+
+# change mac address of active network interface
+echo -e "\nChanging MAC address...\n"
+ip link set dev "$IFACE" down
+macchanger -A "$IFACE"
+ip link set dev "$IFACE" up
+
+# connect to wireless network
+echo -e "\nConnecting to wireless network...\n"
+#wpa_supplicant -Dnl80211,wext -i wls1 -c <(wpa_passphrase "PLDTHOMEFIBR_9f2d70" "caseypatricebrinas") &
+wpa_supplicant -B -i "$IFACE" -c /etc/wpa_supplicant/minimal.conf -Dnl80211 2>&1
+#start iwd@$IFACE
+
+# obtain ip address
+echo -e "\nObtaining IP address...\n"
+dhcpcd -w "$IFACE"
+
+# Secure DNS queries
+if [ $HARDEN -eq 1 ]; then
+echo -e "\nStarting Secure DNS queries daemon...\n"
+systemctl start dnscrypt-proxy.socket
+#systemctl start stubby &
+cat << EOF > $DNSCONF
+server:
+  use-syslog: yes
+  do-daemonize: no
+  username: "unbound"
+  directory: "/etc/unbound"
+  trust-anchor-file: trusted-key.key
+  root-hints: root.hints
+  do-not-query-localhost: no
+  verbosity: 2
+forward-zone:
+  name: "."
+  forward-addr: 127.0.0.1@5300
+EOF
+else
+cat << EOF > $DNSCONF
+server:
+  use-syslog: yes
+  do-daemonize: no
+  username: "unbound"
+  directory: "/etc/unbound"
+  #trust-anchor-file: trusted-key.key
+  root-hints: root.hints
+  #do-not-query-localhost: no
+  tls-cert-bundle: /etc/ssl/certs/ca-certificates.crt
+  verbosity: 2
+forward-zone:
+  name: "."
+  forward-tls-upstream: yes
+  #forward-addr: 108.61.161.119
+  forward-addr: 1.1.1.1@853#cloudflare-dns.com
+  #forward-addr: 99.192.182.100
+EOF
+fi
+
+# Local caching DNS server
+echo -e "\nStarting local caching DNS Service...\n"
+systemctl start unbound
+sleep 3
+
+# VPN
+if [ $HARDEN -eq 1 ]; then
+echo -e "\nConnecting to VPN...\n"
+U="d0np0br3"
+# VPN_LIST="/tmp/vpngate.csv"
+# VPN_CONFIG="/tmp/vpngate.conf"
+# /usr/bin/wget -O $VPN_LIST http://www.vpngate.net/api/iphone && cat $VPN_LIST | sort -k5 -t, -n | grep -w TH | tail -n 1 | awk -F ',' '{$15}' | base64 -di > $VPN_CONFIG
+echo -e "\nFetching vpn configuration...\n"
+sudo -u $U /home/$U/.config/scripts/vpnconfig
+# sleep 3
+echo -e "\nStarting VPN connection...\n"
+chown -v $U:root /tmp/vpngate.*
+cp -v /tmp/vpngate.conf /etc/openvpn/client/vpngate.conf && systemctl start openvpn-client@vpngate
+fi
+
+# enable firewall
+#[[ -n $GW ]] && arptables -A INPUT ! -s $GW -j DROP; arptables -A OUTPUT ! -d $GW -j DROP &
+
+# Firewall
+echo -e "\nLaunching firewall...\n"
+systemctl start ipset
+systemctl start iptables
+
+# SMART Monitoring
+echo -e "\nStarting SMART Disk Monitor...\n"
+start smartd &
+
+# NTP Time Synchronization
+systemctl start systemd-timesyncd
+
+# export network gateway ip address for use by other programs
+# export GW=$(ip route show | awk '/default/ { print $3 }') &
+echo -e "\nDone.\n"

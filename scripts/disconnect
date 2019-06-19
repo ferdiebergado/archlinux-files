@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# stop network services
+systemctl stop systemd-timesyncd &
+systemctl stop unbound &
+systemctl stop dnscrypt-proxy.socket &
+systemctl stop dnscrypt-proxy.service &
+#systemctl stop stubby &
+systemctl stop openvpn-client@vpngate &
+systemctl stop iptables &
+systemctl stop ipset &
+dhcpcd -k "$IFACE" &
+dhcpcd -x "$IFACE" &
+killall wpa_supplicant &
+ip link set dev wls1 down
