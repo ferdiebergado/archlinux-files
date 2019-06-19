@@ -36,7 +36,6 @@ ip link set dev "$IFACE" up
 
 # connect to wireless network
 echo -e "\nConnecting to wireless network...\n"
-#wpa_supplicant -Dnl80211,wext -i wls1 -c <(wpa_passphrase "PLDTHOMEFIBR_9f2d70" "caseypatricebrinas") &
 wpa_supplicant -B -i "$IFACE" -c /etc/wpa_supplicant/minimal.conf -Dnl80211 2>&1
 #start iwd@$IFACE
 
