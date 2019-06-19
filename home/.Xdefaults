@@ -1,0 +1,679 @@
+! ----------------------------------------------------------------------------
+! Updated: Sat Jul 27 01:25:39 2013
+!
+! ----------------------------------------------------------------------------
+
+! XTerm
+XTerm*locale: true
+XTerm*metaSendsEscape: true
+XTerm*saveLines: 2000
+
+
+! urxvt {{{2
+! ================================================================================================================================================================
+! urxvt --help 2>&1| sed -n '/:  /s/^ */! URxvt*/gp' >> ~/.Xresources
+! TERM=dump command man -Pcat urxvt | sed -n '/depth: b/,/^BACKGROUND/p'|sed '$d'| sed 's/@/%-.-%/g; s/\^/%-+-%/g' | sed '/^       [a-z]/s/^ */^/g' | tr -s "\n" \|
+! sed -e :a -e 'N;s/\n/@@/g;ta;P;D' | sed 's,\^\([^@]\+\)@*[\t ]*\([^\^]\+\),! \2\n! URxvt*\1\n\n,g' | sed 's,@@           ,\n           ,g' | sed 's,@*$,,g' |sed '/^[^!]/d'
+
+! Specifies the terminal type name to be set in the TERM environment variable
+! URxvt*termName:                         screen-256color
+XTerm*termName: 						xterm-256color
+URxvt*termName: 						rxvt-unicode
+
+! Create the window with the specified X window geometry [default 80x24]
+!URxvt*geometry:                         240x84
+
+! True: start as a login shell by prepending a - to argv[0] of the shell; option -ls.  False: start as a normal sub-shell [default];
+URxvt*loginShell:                       true
+
+! Use the specified colour for the scrollbar [default #B2B2B2]
+URxvt*scrollColor:                      #777777
+
+! Set scrollbar style to rxvt, plain, next or xterm. plain is the authors favourite.
+URxvt*scrollstyle:                      plain
+
+! True: scroll to bottom when a non-special key pressed.  Special keys are those which are intercepted by rxvt for special handling andnt passed onto the shell; False: dont scroll to bottom
+URxvt*scrollTtyKeypress:                false
+
+! True: scroll to bottom when tty receives output; False: do not scroll to bottom when tty receives output
+URxvt*scrollTtyOutput:                  true
+
+! True: scroll with scrollback buffer when tty recieves new lines (and scrollTtyOutput is False);  False: do not scroll with scrollback buffer when tty recieves new lines
+URxvt*scrollWithBuffer:                 true
+
+! Turn on/off secondary screen (default enabled)
+!URxvt*secondaryScreen:                  true
+
+! (default enabled). If this option is enabled, scrolls on the secondary screen will change the scrollback buffer and, when secondaryScreen is off, switching to/from the secondary screen will instead scroll the screen up.
+URxvt*secondaryScroll:                  false
+
+! When receiving lots of lines, urxvt will only scroll once a whole screen height of lines has been read, resulting in fewer updates while still displaying every received line
+! False: specify that smooth scrolling should be used. urxvt will force a screen refresh on each new line it received
+URxvt*jumpScroll:                       true
+
+! (true) When receiving lots of lines, urxvt will only scroll once in a while (around 60x/sec), resulting in fewer updates. This can result in urxvt not ever displaying some of the lines it receives
+URxvt*skipScroll:                       false
+
+! True: enable the scrollbar [default]; option -sb. False: disable the scrollbar
+URxvt*scrollBar:                        false
+
+! place the scrollbar on the right of the window
+URxvt*scrollBar_right:                  false
+
+! di5play an rxvt scrollbar with/without a trough
+URxvt*scrollBar_floating:               false
+
+! Align the top, bottom or centre [default] of the scrollbar thumb with the pointer on middle button press/drag
+! URxvt*scrollBar_align:                mode
+
+! Set the scrollbar width in pixels.
+! URxvt*thickness:                      number
+
+! Turn on/off pseudo-transparency by using the root pixmap as background
+! URxvt*transparent:                    true
+
+! Tint the transparent background with the given colour. Note that a black tint yields a completely black image while a white tint yields the image unchanged.
+! URxvt*tintColor:                      color
+
+! Darken (0 .. 99) or lighten (101 .. 200) the transparent background.  A value of 100 means no shading
+! URxvt*shading:                        number
+
+! Apply gaussian blur with the specified radius to the transparent background. If a single number is specified, the vertical and horizontal radii are considered to be the same.
+! Setting one of the radii to 1 and the other to a large number creates interesting effects on some backgrounds. The maximum radius value is 128. An horizontal or vertical radius of 0 disables blur
+! URxvt*blurRadius:                     HxV
+
+! Fade the text by the given percentage when focus is lost
+!URxvt*fading:                           30
+
+! Fade to this colour, when fading is used (see fading:). The default colour is black
+! URxvt*fadeColor:                        Green
+
+! True: inhibit writing record into the system log file utmp;  False: write record into the system log file utmp [default]
+URxvt*utmpInhibit:                      false
+
+! True: set the urgency hint for the wm on receipt of a bell character.  False: do not set the urgency hint [default] urxvt resets the urgency hint on every focus change.
+URxvt*urgentOnBell:                     true
+
+! True: use visual bell on receipt of a bell character; option -vb.  False: no visual bell [default]
+URxvt*visualBell:                       true
+
+! True: de-iconify (map) on receipt of a bell character.  False: no de-iconify (map) on receipt of a bell character [default].
+URxvt*mapAlert:                         true
+
+! True: the mouse wheel scrolls a page full. False: the mouse wheel scrolls five lines [default]
+URxvt*mouseWheelScrollPage:             false
+
+! Change the meaning of triple-click selection with the left mouse button. Instead of selecting a full line it will extend the selection to the end of the logical line only
+! URxvt*tripleclickwords:               boolean
+
+! Enables "insecure" mode. Rxvt-unicode offers some escape sequences that echo arbitrary strings like the icon name or the locale. This could be abused if somebody gets 8-bit-clean access to your disp1ay
+! URxvt*insecure:                       true
+
+! Use the specified colour as the windows background colour [default White]
+! URxvt*background:                       Black
+
+! Use the specified colour as the windows foreground colour [default Black]
+! URxvt*foreground:                       Cyan
+
+! Use the specified colour to disp1ay bold characters when the foreground colour is the default.
+! URxvt*colorBD:                        color
+
+! Use the specified colour to disp1ay italic characters when the foreground colour is the default
+! URxvt*colorIT:                        color
+
+! Use the specified colour to disp1ay underlined characters when the foreground colour is the default.
+URxvt*colorUL:                          yellow
+
+! Use the specified colour as the background for reverse video characters.
+! URxvt*colorRV:                        color
+
+! If set, use the specified colour as the colour for the underline itself. If unset, use the foreground colour
+URxvt*underlineColor:                   yellow
+
+! Use the specified colour for the scrollbar [default #B2B2B2]
+! URxvt*scrollColor:                    color
+
+! Use the specified colour for the scrollbars trough area [default #969696]. Only relevant for rxvt (non XTerm/NeXT) scrollbar
+! URxvt*troughColor:                    color
+
+! If set, use the specified colour as the background for highlighted characters. If unset, use reverse video
+! URxvt*highlightColor:                 color
+
+! If set and highlightColor is set, use the specified colour as the foreground for highlighted characters
+! URxvt*highlightTextColor:               White
+
+! True: Make the cursor underlined. False: Make the cursor a box [default]
+URxvt*cursorUnderline:                  true
+
+! True: blink the cursor. False: do not blink the cursor [default];
+URxvt*cursorBlink:                      true
+
+! Use the specified colour for the cursor.  The default is to use the foreground colour
+!URxvt*cursorColor:                      White
+
+! Use the specified colour for the colour of the cursor text.  For this to take effect, cursorColor must also be specified.  The default is to use the background colour
+!URxvt*cursorColor2:                     White
+
+! True: blank the pointer when a key is pressed or after a set number of seconds of inactivity. False: the pointer is always visible [default]
+!URxvt*pointerBlank:                     true
+
+! Specifies number of seconds before blanking the pointer [default 2]. Use a large number (e.g. 987654321) to effectively disable the timeout
+!URxvt*pointerBlankDelay:                4
+
+! Mouse pointer foreground colour
+!URxvt*pointerColor:                     green
+
+! Mouse pointer background colour
+!URxvt*pointerColor2:                    blue
+
+! Set the name used to label the window's icon or displayed in an icon manager window, it also sets the window's title unless it is explicitly set
+! URxvt*iconName:                       string
+
+! Set the application icon pixmap; option -icon.
+! URxvt*iconFile:                       file
+
+! Set window title string, the default title is the command-line specified after the -e option, if any, otherwise the application name
+! URxvt*title:                          string
+
+! Select the fonts to be used. This is a comma separated list of font names that are checked in order when trying to find glyphs for characters
+! URxvt*font:                             -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
+!URxvt*font:           					xft:saxMono:autohint=true:pixelsize=12
+!URxvt*font: 							-misc-ohsnap.icons-medium-r-normal--14-101-100-100-c-70-iso8859-1
+URxvt*font: 						xft:DejaVuSansMono Nerd Font Mono:pixelsize=14,xft:FreeSerif,xft:DejaVu Serif:style=bold:pixelsize=11:autohint=true,xft:DejaVu Sans,xft:Source Han Sans CN,xft:Akshar Unicode,xft:Noto Sans Kannada,xft:Noto Sans Gujarati,xft:Abyssinica SIL,xft:PowerlineSymbols,xft:octicons:pixelsize=16,xft:Font Awesome 5 Free Regular:pixelsize=16
+!URxvt*font: 						xft:Envy Code R:pixelsize=12:style=regular,xft:DejaVu Sans Mono:style=regular:pixelsize=12:autohint=true,xft:DejaVu Sans,xft:DejaVu Serif,xft:FreeSerif,xft:Source Han Sans CN,xft:Akshar Unicode,xft:Noto Sans Kannada,xft:Noto Sans Gujarati,xft:Abyssinica SIL
+!,xft:Unifont,xft:Symbola
+
+!,xft:Unifont,xft:Symbola
+!URxvt*font:     -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
+!URxvt*font:                             -gnu-unifont-medium-r-normal-sans-16-160-75-75-c-80-iso10646-1
+!URxvt*font: 							-misc-ohsnap-medium-r-normal--14-101-100-100-c-70-iso8859-1, -misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1, -misc-ohsnap.icons-medium-r-normal--14-101-100-100-c-70-iso8859-1
+!URxvt*font: -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-2, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-13, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-7, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-9, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-5, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-koi8-u, -gnu-unifont-medium-r-normal-sans-16-160-75-75-c-80-iso10646-1, -misc-tamzenforpowerline-medium-r-normal--14-101-100-100-c-70-iso8859-1, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-microsoft-cp1251, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-paratype-pt154, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-microsoft-cp1251, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-koi8-r, -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-16
+!xft:DejaVu Sans Mono:style=regular:pixelsize=15,xft:FreeSerif, xft:Abecedario, xft:Abyssinica SIL,xft:Symbola
+!URxvt*font: 							xft:GohuFont Nerd Font:style=regular:pixelsize=14,xft:DejaVu Sans Mono:style=regular:pixelsize=14,xft:FreeSerif, xft:Abecedario, xft:Abyssinica SIL,xft:Symbola,xft:Unifont
+!URxvt*font: 							-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1
+!URxvt*font: 							xft:DejaVuSansMono Nerd Font Mono:style=regular:pixelsize=12, xft:FreeSerif, xft:Abecedario, xft:Abyssinica SIL,xft:Symbola,xft:Unifont
+!URxvt*font: 							xft:DejaVu Sans Mono:style=regular:pixelsize=15,xft:Noto Sans Mono CJK JP:pixelsize=15,xft:FreeSerif
+!URxvt*font:     -misc-tamzen-medium-r-normal--14-101-100-100-c-70-iso8859-1
+!URxvt*font:     -misc-tamzenforpowerline-medium-r-normal--14-101-100-100-c-70-iso8859-1
+!URxvt*font:     xft:FiraMonoFor Nerd Font Mono:style=regular:pixelsize=12
+!URxvt*font:     xft:NK57 Monospace:pixelsize=11
+!URxvt*boldFont:                         -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
+!URxvt*italicFont:                       xft:Tamsyn:italic:autohint=true:pixelsize=12
+!URxvt*boldItalicFont:                   xft:Tamsyn:bold:italic:autohint=true:pixelsize=12
+!URxvt*boldFont:							xft:saxMono:bold:autohint=true:pixelsize=12
+!URxvt*boldFont: 						-misc-ohsnap.icons-bold-r-normal--14-101-100-100-c-70-iso8859-1
+!URxvt*boldFont: 						-misc-ohsnap-bold-r-normal--14-101-100-100-c-70-iso8859-1, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso10646-1, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso8859-2, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso8859-15, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso8859-13, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso8859-7, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso8859-9, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso8859-5, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso8859-15, -misc-tamzenforpowerline-bold-r-normal--14-101-100-100-c-70-iso8859-1, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-koi8-u, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-microsoft-cp1251, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-koi8-r, -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso8859-16
+!URxvt*boldFont: 						-misc-ohsnapu-bold-r-normal--14-101-100-100-c-70-iso10646-1
+
+! When font styles are not enabled, or this option is enabled (True default), bold/blink font styles imply high intensity foreground/background colours
+! URxvt*intensityStyles:                boolean
+
+! Save number lines in the scrollback buffer [default 64]. This resource is limited on most machines to 65535
+URxvt*saveLines:                        2000
+
+! Double-buffering for xft (default enabled).  On some card/driver combination enabling it slightly decreases performance, on most it greatly helps it. The slowdown is small, so it should normally be enabled
+!URxvt*buffered:                        false
+
+! Attempt to find a visual with the given bit depth
+!URxvt*depth:                          	32
+
+! visual id to request
+! URxvt*visual:                         number
+
+! Sets the WM_TRANSIENT_FOR property to the given window id.
+! URxvt*transient-for:                  windowid
+
+! Sets override-redirect for the terminal window, making it almost invisible to window managers
+URxvt*override-redirect:              	false
+
+! Turn on/off hold window after exit support. If enabled, urxvt will not immediately destroy its window when the program executed within it exits. Instead, it will wait till it is being killed or closed by the user.
+URxvt*hold:                             false
+
+! External border of number pixels. This resource is limited to 100
+URxvt*externalBorder: 6
+!6
+
+! Internal border of number pixels. This resource is limited to 100
+URxvt*internalBorder: 12
+!13
+
+! The colour of the border around the text area and between the scrollbar and the text.
+! URxvt*borderColor:                    color
+
+! Set MWM hints to request a borderless window, i.e. if honoured by the WM, the rxvt-unicode window will not have window decorations
+URxvt*borderLess:                     	false
+
+! Specifies number of lines (pixel height) to insert between each row of the disp1ay [default 0]
+! URxvt*lineSpace:                      number
+
+! Letter spacing adjustment
+!URxvt*letterSpace:                    	-1
+
+! Disable the usage of the built-in block graphics/line drawing characters and just rely on what the specified fonts provide. Use this if you have a good font and want to use its block graphic glyphs
+! URxvt*skipBuiltinGlyphs:              	true
+
+! The string to send when the backspace key is pressed. If set to DEC or unset it will send Delete (code 127) or, with control, Backspace (code 8)
+! URxvt*backspacekey:                   string
+
+! The string to send when the delete key (not the keypad delete key) is pressed. If unset it will send the sequence traditionally associated with the Execute key.
+! URxvt*deletekey:                      string
+
+! Specify a command pipe for vt100 printer [default lpr(1)].  Use Print to initiate a screen dump to the printer and Ctrl-Print or Shift-Print to include the scrollback
+URxvt*print-pipe:                       cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+
+! Set the key to be interpreted as the Meta key to: alt, meta, hyper, super, mod1, mod2, mod3, mod4, mod5
+! URxvt*modifier:                       modifier
+
+! The characters used as delimiters for double-click word selection (whitespace delimiting is added automatically if resource is given)
+! URxvt*cutchars:                       string
+
+! Specify the reply rxvt-unicode sends to the shell when an ENQ (control-E) character is passed through. It may contain escape values as described in the entry on keysym following.
+! URxvt*answerbackString:               string
+
+! Colon-separated list of additional directories that hold extension scripts. When looking for perl extensions, urxvt will first look in these directories
+! URxvt*perl-lib:                       string
+
+! Perl code to be evaluated when all extensions have been registered
+! URxvt*perl-eval:                      perl-eval
+
+! Comma-separated list(s) of perl extension scripts (default: "default") to use in this terminal instance, blank disables
+URxvt*perl-ext-common:
+URxvt*perl-ext:
+
+! Specifies the program to be started with a URL argument. Used by the "selection-popup" and "matcher" perl extensions
+! URxvt*url-launcher:                   string
+
+! name of inputMethod to use
+! URxvt*inputMethod:                    name
+
+! OverTheSpot, OffTheSpot, Root
+! URxvt*preeditType:                    style
+
+! The locale to use for opening the IM. You can use an "LC_CTYPE" of e.g.  "de_DE.UTF-8" for normal text processing
+URxvt*imLocale:                       "en_US.UTF-8"
+
+! Specify the font-set used for XIM styles "OverTheSpot" or "OffTheSpot". It must be a standard X font set (XLFD patterns separated by commas)
+! URxvt*imFont:                         fontname
+
+! Sets the working directory for the shell (or the command specified via -e). The path must be an absolute path and it must exist for urxvt to start. If it isnt specified then the current working directory
+! URxvt*chdir:                          string
+
+! True: simulate reverse video by foreground and background colours; option -rv.  False: regular screen colours [default]
+! URxvt*reverseVideo:                   boolean
+
+! True: handle Meta (Alt) + keypress to set the 8th bit. False: handle Meta (Alt) + keypress as an escape prefix [default]
+! URxvt*meta8:                          boolean
+
+! True: store tabs as wide characters. False: interpret tabs as cursor movement only
+! URxvt*pastableTabs:                   boolean
+
+! Turn on/off ISO 14755 (default enabled)
+! URxvt*iso14755:                       boolean
+
+! Turn on/off ISO 14755 5.2 mode (default enabled)
+! URxvt*iso14755_52:                    boolean
+
+! Sets the hotkey that starts the incremental scrollback buffer search (default: "M-s")
+! URxvt*searchable-scrollback:          string
+
+! Additional selection patterns, see the urxvtperl(3) manpage for details.
+! URxvt*selection.pattern-0:            string
+
+! Selection auto-transform patterns, see the urxvtperl(3) manpage for details
+! URxvt*selection-autotransform.*:      string
+
+! Associate string with keysym sym. The intervening resource name keysym. cannot be omitted.
+! URxvt*keysym.sym:                     keysym
+! URxvt.keysym.Shift-Up: command:\033]720;1\007
+! URxvt.keysym.Shift-Down: command:\033]721;1\007
+!URxvt.keysym.Home: \033[1~
+!URxvt.keysym.End: \033[4~
+!URxvt.keysym.KP_Home: \033[1~
+!URxvt.keysym.KP_End:  \033[4~
+URxvt.keysym.Home: \033[7~
+URxvt.keysym.End: \033[8~
+URxvt.keysym.KP_Home: \033[7~
+URxvt.keysym.KP_End:  \033[8~
+
+! URxvt*selection-pastebin.cmd:         string
+! URxvt*selection-pastebin.url:         string
+
+! URxvt*tab-bg:                         colour
+! URxvt*tab-fg:                         colour
+! URxvt*tabbar-bg:                      colour
+! URxvt*tabbar-fg:                      colour
+
+
+! URxvt*xrm:                            string
+! URxvt*background.border:              boolean
+! URxvt*background.expr:                string
+! URxvt*background.interval:            seconds
+
+! URxvt*bell-command:                   string
+
+! URxvt*matcher.button:                 string
+! URxvt*matcher.launcher:               string
+! URxvt*matcher.launcher.*:             string
+! URxvt*matcher.pattern.*:              string
+! URxvt*matcher.rend.*:                 string
+
+! URxvt*remote-clipboard.fetch:         string
+! URxvt*remote-clipboard.store:         string
+
+! Molokai
+!#define Molokai_black        #1B1D1E
+!#define Molokai_red          #B60050
+!#define Molokai_red2         #FF0000
+!#define Molokai_green        #88BB22
+!#define Molokai_brown        #C47F2C
+!#define Molokai_blue         #30309B
+!#define Molokai_purple       #7E40A5
+!#define Molokai_cyan         #4699AF
+!#define Molokai_light_grey   #9999AA
+!#define Molokai_dark_grey    #303030
+!#define Molokai_light_red    #F92672
+!#define Molokai_light_green  #80FF00
+!#define Molokai_yellow       #FFBA68
+!#define Molokai_light_blue   #7070F0
+!#define Molokai_light_purple #BB88DD
+!#define Molokai_light_cyan   #66D9EF
+!#define Molokai_white        #F8F8F2
+
+!URxvt Molokai
+!URxvt*background  : Molokai_black
+!URxvt*foreground  : Molokai_white
+!URxvt.foreground: #99CC99
+!URxvt.background: #000000
+!URxvt*cursorColor : #99CC99
+!URxvt*color0      : Molokai_black
+!URxvt*color1      : Molokai_red
+!URxvt*color2      : Molokai_green
+!URxvt*color3      : Molokai_brown
+!URxvt*color4      : Molokai_blue
+!URxvt*color5      : Molokai_purple
+!URxvt*color6      : Molokai_cyan
+!URxvt*color7      : Molokai_light_grey
+!URxvt*color8      : Molokai_dark_grey
+!URxvt*color9      : Molokai_light_red
+!URxvt*color10     : Molokai_light_green
+!URxvt*color11     : Molokai_yellow
+!URxvt*color12     : Molokai_light_blue
+!URxvt*color13     : Molokai_light_purple
+!URxvt*color14     : Molokai_light_cyan
+!URxvt*color15     : Molokai_white
+
+!   ██████  ██████  ██   ██ ██████  █████   █████  ██████  █████  ██████
+!  ██░░░░  ██░░░░██░██  ░██░░██░░████░░░██ ██░░░██░░██░░████░░░██░░██░░██
+! ░░█████ ░██   ░██░██  ░██ ░██ ░░░██  ░░ ░███████ ░██ ░░░███████ ░██ ░░
+!  ░░░░░██░██   ░██░██  ░██ ░██   ░██   ██░██░░░░  ░██   ░██░░░░  ░██
+!  ██████ ░░██████ ░░██████░███   ░░█████ ░░██████░███   ░░██████░███
+! ░░░░░░   ░░░░░░   ░░░░░░ ░░░     ░░░░░   ░░░░░░ ░░░     ░░░░░░ ░░░
+!  r  e  a  d     c  o  d  e     l  i  k  e     a     w  i  z  a  r  d
+!
+! sourcerer by xero harrison (http://xero.nu)
+!  ├─ based on sorcerer by Jeet Sukumaran (http://jeetworks.org)
+!  └─ based on mustang by Henrique C. Alves (hcarvalhoalves@gmail.com)
+
+! █▓▒░ scorcerer colors
+!*.foreground:   #c2c2b0
+!*.background:   #222222
+!*.cursorColor:  #c2c2b0
+! black
+!*.color0:       #222222
+!*.color8:       #272822
+! red
+!*.color1:       #aa4450
+!*.color9:       #ff6a6a
+! green
+!*.color2:       #719611
+!*.color10:      #b1d631
+! yellow
+!*.color3:      #cc8800
+!*.color3:       #ff9800
+!*.color11:      #87875f
+! blue
+!*.color4:       #6688aa
+!*.color12:      #90b0d1
+! magenta
+!*.color5:       #8f6f8f
+!*.color13:      #8181a6
+! cyan
+!*.color6:       #528b8b
+!*.color14:      #87ceeb
+! white
+!*.color7:       #d3d3d3
+!*.color15:      #c1cdc1
+! others
+!URxvt.colorIT:  #719611
+!URxvt.colorBD:  #d3d3d3
+!URxvt.colorUL:  #528b8b
+
+!Honukai Color Scheme
+! special
+!*.foreground:   #babcc8
+!*.background:   #111625
+!*.cursorColor:  #babcc8
+
+! black
+!*.color0:       #000000
+!*.color8:       #555555
+
+! red
+!*.color1:       #dd5030
+!*.color9:       #e17f64
+
+! green
+!*.color2:       #6cbd3a
+!*.color10:      #7fba5a
+
+! yellow
+!*.color3:       #e6d72d
+!*.color11:      #ffff55
+
+! blue
+!*.color4:       #2670fc
+!*.color12:      #5d8ff3
+
+! magenta
+!*.color5:       #f258b9
+!*.color13:      #fa83c0
+
+! cyan
+!*.color6:       #38b2da
+!*.color14:      #78cee7
+
+! white
+!*.color7:       #bbbbbb
+!*.color15:      #ffffff
+
+!Frocerer Color Theme
+! special
+!*.foreground:   #665c64
+!*.background:   #121212
+!*.cursorColor:  #665c64
+
+! black
+!*.color0:       #554444
+!*.color8:       #c3c2c5
+
+! red
+!*.color1:       #c58137
+!*.color9:       #f0a655
+
+! green
+!*.color2:       #485373
+!*.color10:      #768dd0
+
+! yellow
+!*.color3:       #8a7a64
+!*.color11:      #beb090
+
+! blue
+!*.color4:       #252b39
+!*.color12:      #61778d
+
+! magenta
+!*.color5:       #33357f
+!*.color13:      #6363be
+
+! cyan
+!*.color6:       #6578b0
+!*.color14:      #849eeb
+
+! white
+!*.color7:       #f2f1b9
+!*.color15:      #665c64
+
+! Sami Color Theme
+!*foreground:	#ecf0f1
+!*background:	#141516
+!*background:	#000000
+
+!*cursorColor:	#ecf0f1
+!*color0:	#3e464e
+!*color0:	#000000
+!*color8:	#3e464e
+!*color1:	#db0a5b
+!*color9:	#db0a5b
+!*color2:	#3fc380
+!*color10:	#3fc380
+!*color3:	#f2784b
+!*color11:	#f2784b
+!*color4:	#22a7f0
+!*color12:	#22a7f0
+!*color5:	#f64747
+!*color13:	#f64747
+!*color6:	#55aeae
+!*color14:	#55aeae
+!*color7:	#ecf0f1
+!*color15:	#ecf0f1
+
+/* ! special */
+/* *.foreground:   #d3d0c8 */
+/* *.background:   #303030 */
+/* *.cursorColor:  #d3d0c8 */
+
+/* ! black */
+/* *.color0:       #2d2d2d */
+/* *.color8:       #747369 */
+
+/* ! red */
+/* *.color1:       #f2777a */
+/* *.color9:       #f2777a */
+
+/* ! green */
+/* *.color2:       #99cc99 */
+/* *.color10:      #99cc99 */
+
+/* ! yellow */
+/* *.color3:       #ffcc66 */
+/* *.color11:      #ffcc66 */
+
+/* ! blue */
+/* *.color4:       #6699cc */
+/* *.color12:      #6699cc */
+
+/* ! magenta */
+/* *.color5:       #cc99cc */
+/* *.color13:      #cc99cc */
+
+/* ! cyan */
+/* *.color6:       #66cccc */
+/* *.color14:      #66cccc */
+
+/* ! white */
+/* *.color7:       #d3d0c8 */
+/* *.color15:      #f2f0ec */
+
+!------------------------------------------------------------------------------
+! !.rofi.Blor Color theme
+! ------------------------------------------------------------------------------
+! Use extended color scheme
+!!.rofi.color-enabled:                  true
+! Color scheme for normal row
+!!.rofi.color-normal:                   argb:00000000,  #D8DEE9 , argb:00000000,  #FAC863 ,  #1B2B34
+! Color scheme for urgent row
+!!.rofi.color-urgent:                   argb:00000000,  #F99157 , argb:00000000,  #F99157 ,  #1B2B34
+! Color scheme for active row
+!!.rofi.color-active:                   argb:00000000,  #6699CC , argb:00000000,  #6699CC ,  #1B2B34
+! Color scheme window
+!!.rofi.color-window:                   argb:ee222222,  #FAC863 ,  #FAC863
+! Separator style (none, dash, solid)
+!!.rofi.separator-style:                solid
+
+! ------------------------------------------------------------------------------
+! !.rofi.Solarized Alternate Color Theme
+! ------------------------------------------------------------------------------
+!.rofi.color-enabled: true
+!.rofi.color-window: #002b37, #002b37, #003642
+!.rofi.color-normal: #002b37, #819396, #003643, #008ed4, #ffffff
+!.rofi.color-active: #002b37, #008ed4, #003643, #008ed4, #66c6ff
+!.rofi.color-urgent: #002b37, #da4281, #003643, #008ed4, #890661
+
+! ------------------------------------------------------------------------------
+! !.rofi.Purple Color Theme
+! ------------------------------------------------------------------------------
+! Use extended color scheme
+!!.rofi.color-enabled:                  true
+! Color scheme for normal row
+!!.rofi.color-normal:                   argb:a02f1e2e, #b4b4b4, argb:a02f1e2e, argb:54815ba4, #ffffff
+! Color scheme for urgent row
+!!.rofi.color-urgent:                   argb:272f1e2e, #ef6155, argb:2f2f1e2e, argb:54815ba4, #ef6155
+! Color scheme for active row
+!!.rofi.color-active:                   argb:272f1e2e, #815ba4, argb:2f2f1e2e, argb:54815ba4, #815ba4
+! Color scheme window
+!!.rofi.color-window:                   #2f1e2e, argb:36ef6155, argb:2fef6155
+! Separator style (none, dash, solid)
+!!.rofi.separator-style:                dash
+
+!!.rofi.opacity: 85
+!!.rofi.width: 500
+!!.rofi.lines: 15
+!!.rofi.columns: 1
+!.rofi.font: Tamsyn 10
+!.rofi.bw: 2
+!.rofi.padding: 2
+!.rofi.yoffset: 0
+!.rofi.xoffset: -2
+!.rofi.fixed-num-lines: true
+!.rofi.hmode: false
+!.rofi.terminal: urxvtc
+!.rofi.ssh-set-title: true
+!!.rofi.key: F12
+!!.rofi.rkey: mod1+F2
+!!.rofi.skey: mod1+F3
+!.rofi.location: 0
+
+!!.rofi.fg:   #99CC99
+!!.rofi.bg:   #000000
+!!.rofi.hlfg: #000000
+!!.rofi.hlbg: #99CC99
+!!.rofi.bc:   #99CC99
+!.rofi.disable-history: false
+!.rofi.levenshtein-sort: true
+!.rofi.switchers: window,run,combi
+
+!Xft.lcdfilter: lcddefault
+!Xft.hintstyle: hintslight
+!Xft.hinting: 1
+!Xft.antialias: 1
+!Xft.rgba: rgb
+
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+!Xft.hinting:    true
+!Xft.hintstyle:  hintslight
+Xft.autohint:   true
+Xft.lcdfilter:  lcddefault
+
+!Xcursor.theme: Raum
+
+dmenu.font:          Roboto:size=8
+dmenu.foreground:    #C7CCD1
+dmenu.background:    #1C2023
+dmenu.selbackground: #95AEC7
+dmenu.selforeground: #1C2023
+
+#include "/home/d0np0br3/Downloads/terminalcolors/yousai-v2.txt"
+!URxvt.color12: rgb:5c/5c/ff

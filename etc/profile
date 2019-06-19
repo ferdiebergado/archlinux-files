@@ -1,0 +1,98 @@
+# /etc/profile
+
+# Set our umask
+umask 022
+
+# Append our default paths
+appendpath () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
+}
+
+appendpath '/usr/local/sbin'
+appendpath '/usr/local/bin'
+appendpath '/usr/bin'
+unset appendpath
+
+export PATH
+
+# Load profiles from /etc/profile.d
+if test -d /etc/profile.d/; then
+	for profile in /etc/profile.d/*.sh; do
+		test -r "$profile" && . "$profile"
+	done
+	unset profile
+fi
+
+# Source global bash config
+if test "$PS1" && test "$BASH" && test -z ${POSIXLY_CORRECT+x} && test -r /etc/bash.bashrc; then
+	. /etc/bash.bashrc
+fi
+
+# Termcap is outdated, old, and crusty, kill it.
+unset TERMCAP
+
+# Man is much better than us at figuring this out
+unset MANPATH
+
+
+# Specify urxvt socket
+export RXVT_SOCKET='/tmp/urxvt-socket'
+
+# Get broadcast network interface 
+export IFACE=$(ip addr show | grep -i broadcast | awk -F ": " '{print $2}')
+
+# Network Gateway IP address
+#export GW=$(ip route show | awk '/default/ { print $3 }')
+
+# VA-API Intel Driver
+export LIBVA_DRIVER_NAME="i965"
+
+# VDPAU Intel Driver
+export VDPAU_DRIVER="va_gl"
+
+# Console Text Editor
+export VISUAL="nvim"
+
+# export BSPWM_SOCKET="/tmp/bspwm-socket"
+
+export XDG_CONFIG_DIRS=/usr/etc/xdg:/etc/xdg
+
+# export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
+#export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel, -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
+
+# Fix for Java Applications for Tiling Window Managers
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dsun.java2d.opengl=true'
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+export QT_QPA_PLATFORMTHEME="qt5ct"
+# export QT_STYLE_OVERRIDE="qt5ct"
+# export QT_QPA_PLATFORMTHEME='breeze-dark'
+#export XTERM="urxvtc"
+# export TERM="screen-256color"
+
+export EDITOR="nvim"
+#unset VBOX_ALSA_DAC_DEV
+#export VBOX_ALSA_ADC_DEV="null"
+#export SHELL=/bin/zsh
+#if [ -t 1 ]; then exec $SHELL; fi
+
+export SYSTEMD_LESS="FRXMK"
+export WINEDLLOVERRIDES="winemenubuilder.exe=d;mscoree=d;mshtml=d"
+export CFLAGS="-march=westmere -O2 -pipe -fno-plt -fstack-check"
+export CXXFLAGS="-march=westmere -O2 -pipe -fno-plt -fstack-check"
+
+#export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+#export LESS=" -RN "
+#export DMENU_OPTIONS=" -fn \"Misc Ohsnap\"-8:normal "
+#export DMENU_OPTIONS=" -fn 'Misc Ohsnap-12:normal' "
+#export DMENU_OPTIONS=" -fn 'xos4 Terminus-12' "
+export DMENU_FONT="Misc Ohsnap-12"
+# Uniform look for QT apps
+#export QT_QPA_PLATFORMTHEME="qt5ct"
+export FREETYPE_PROPERTIES="truetype:interpreter-version=35"
+export PAPERSIZE="a4"

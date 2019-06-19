@@ -1,0 +1,29 @@
+#defaults.bluealsa.interface "hci0"
+#defaults.bluealsa.device "00:58:56:0C:FF:C7"
+#defaults.bluealsa.device "35:A3:27:F3:D4:26"
+#defaults.bluealsa.device "DC:60:78:20:57:1B"
+#defaults.bluealsa.profile "a2dp"
+#defaults.bluealsa.delay 10000
+#defaults.pcm.rate_converter "speexrate_medium"
+
+pcm.!default {
+    type plug
+    slave.pcm "asymed"
+}
+
+
+pcm.asymed {
+    type asym
+    playback.pcm {
+        @func getenv
+        vars [ ALSAPCM ]
+        default "dmix"
+    }
+    capture.pcm "dsnoop"
+}
+
+defaults.bluealsa {
+    interface "hci0"
+    device "00:58:56:0C:FF:C7"
+    profile "a2dp"
+}
